@@ -18,11 +18,25 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var caption: UITextView!      // this references the caption you put on the image
     @IBOutlet weak var likesLbl: UILabel!        // this references the like label
 
+     var post: Post!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func configureCell(post: Post) {
+        self.post = post
+        self.caption.text = post.caption
+        self.likesLbl.text = "\(post.likes)" //int (the number of likes) passed as a string 
+        
+    }
+    
+    
+    
+    
+    
 
     
 

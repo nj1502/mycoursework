@@ -77,15 +77,26 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     
-    
-    
+    //WHEN TESTING COMPARE VALUES IN TABLE TO THAT OF THE ACTUAL DATABASE on firebase
+    //configurig tableview
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //basically gets specific entities/child/objects (captions) from the posts object
-          let post = posts[indexPath.row] // get post from post array based on index path and then print captions specifically (ERROR handling to check whether it is working)
-        print("NATHAN:\(post.caption)")
+        // get post from post array based on index path and then print captions specifically (ERROR handling to check whether it is working)
         
-        return tableView.dequeueReusableCell(withIdentifier: "PostCell") as! PostCell
+          let post = posts[indexPath.row]
+        
+        //creates a post cell
+        // this actually adds the object retreived from post arritbute/Child/object to the visibile UI
+        // adds number of likes, caption
+        
+          if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
+            cell.configureCell(post: post)
+            return cell
+            
+          } else{
+            return PostCell()
+            }
     }
 
     //TESTING CARRIED OUT FOR THISS CHECK BOTTOM LEFT SCREEN FOR NATHAN: ... (they will be captions

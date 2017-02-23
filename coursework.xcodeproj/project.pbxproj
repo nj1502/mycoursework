@@ -22,6 +22,7 @@
 		A0BCF8831E5EDF9E004D8318 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCF8821E5EDF9E004D8318 /* FeedVC.swift */; };
 		A0BCF8851E5EFF81004D8318 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCF8841E5EFF81004D8318 /* CircleView.swift */; };
 		A0BCF8871E5F1525004D8318 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCF8861E5F1525004D8318 /* PostCell.swift */; };
+		A0BCF88A1E5F293F004D8318 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCF8891E5F293F004D8318 /* DataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		A0BCF8821E5EDF9E004D8318 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		A0BCF8841E5EFF81004D8318 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		A0BCF8861E5F1525004D8318 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		A0BCF8891E5F293F004D8318 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		C95864200C4469210249C7D7 /* Pods-coursework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coursework.release.xcconfig"; path = "Pods/Target Support Files/Pods-coursework/Pods-coursework.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +90,7 @@
 		A0BCF85B1E5E9658004D8318 /* coursework */ = {
 			isa = PBXGroup;
 			children = (
+				A0BCF8881E5F2900004D8318 /* Services */,
 				A0BCF87F1E5EB97A004D8318 /* coursework.entitlements */,
 				A0BCF8761E5EA4A9004D8318 /* Util */,
 				A0BCF8721E5E99D3004D8318 /* Model */,
@@ -138,6 +141,14 @@
 				A0BCF8771E5EA4CA004D8318 /* Constants.swift */,
 			);
 			name = Util;
+			sourceTree = "<group>";
+		};
+		A0BCF8881E5F2900004D8318 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A0BCF8891E5F293F004D8318 /* DataService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		F9EE125D5B94D52D2460DE2B /* Pods */ = {
@@ -284,6 +295,7 @@
 				A0BCF85F1E5E9658004D8318 /* SignInVC.swift in Sources */,
 				A0BCF87A1E5EA630004D8318 /* RoundBtn.swift in Sources */,
 				A0BCF85D1E5E9658004D8318 /* AppDelegate.swift in Sources */,
+				A0BCF88A1E5F293F004D8318 /* DataService.swift in Sources */,
 				A0BCF8831E5EDF9E004D8318 /* FeedVC.swift in Sources */,
 				A0BCF8751E5EA46B004D8318 /* FancyView.swift in Sources */,
 				A0BCF8781E5EA4CA004D8318 /* Constants.swift in Sources */,

@@ -83,7 +83,8 @@ class SignInVC: UIViewController {
             } else {
                 print("NATHAN: Successfully authenticated with Firebase")
                 if let user = user {
-                    self.completeSignIn(id: user.uid)
+                    let userData = ["provider": user.providerID]
+                    self.completeSignIn(id: user.uid, userData: userData)
                     
                     //this is the completetion handler of the one above
                 
@@ -101,7 +102,8 @@ class SignInVC: UIViewController {
                 if error == nil { //if there is a user check with information stored and firebase and authenticate and then signin
                     print("NATHAN: Email user authenticated with Firebase")
                     if let user = user {
-                        self.completeSignIn(id: user.uid)
+                        let userData = ["provider": user.providerID]
+                        self.completeSignIn(id: user.uid, userData: userData)
                     }
                 }else {
                     FIRAuth.auth()?.createUser(withEmail: email, password: pwd, completion: { (user, error) in
@@ -113,7 +115,10 @@ class SignInVC: UIViewController {
                             print("NATHAN: Successfully authenticated with Firebase")
                             // if successfully authenticated with firebase
                             if let user = user {
-                                self.completeSignIn(id: user.uid)
+                                let userData = ["provider": user.providerID]
+                                self.completeSignIn(id: user.uid, userData: userData)
+                                //calls the function completeSignIn to also create a new entity in the user attribute for firebase by using user id (or is user table? double check and see)
+                                //
                                 //ERROR handling if this is met then the funciton below for calling keychaniwrapper is called. This check whether something exits in the user.
                             }
                         }
@@ -124,13 +129,24 @@ class SignInVC: UIViewController {
     }
     
         // create a function to call KeychainWrapper in the functions above, when called it will write the users details into the key chain.
-        func completeSignIn(id: String) {
-            let keychainResult = KeychainWrapper.defaultKeychainWrapper.set(id, forKey: KEY_UID)
-            print("NATHAN: Data saved to keychain \(keychainResult)") //message the is provided when user information is saved to keychain.
-            performSegue(withIdentifier: "goToFeed", sender: nil)
-            //this performs the segue if the keychain is stored.
+    func completeSignIn(id: String, userData: Dictionary<String, String>) {
+        
+        DataService.ds.createFirbaseDBUser(uid: id, userData: userData)
+        //let keychainResult = KeychainWrapper.setString(id, forKey: KEY_UID)
+        //This creates a new entity in the user attribtue in the firebase database
+        
+        let keychainResult = KeychainWrapper.defaultKeychainWrapper.set(id, forKey: KEY_UID)
+        //message the is provided when user information is saved to keychain.
+        // as well as providing
+        
+        print("JESS: Data saved to keychain \(keychainResult)")
+        performSegue(withIdentifier: "goToFeed", sender: nil)
+        //this performs the segue if the keychain is stored.
     }
-    }
+    
+}
+
+
 
 
 
@@ -139,7 +155,7 @@ class SignInVC: UIViewController {
 
         
         
-        
+
         
 
 

@@ -78,11 +78,11 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="clB-Ku-ASK">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="clB-Ku-ASK" customClass="FancyField" customModule="coursework" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="41" width="283" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbT-Yt-rhX" customClass="FancyBtn" customModule="coursework" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="91" width="283" height="33"/>
@@ -91,6 +91,9 @@
                                         <state key="normal" title="Sign In">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="signInTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3PY-nL-6ax"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -114,6 +117,10 @@
                             <constraint firstItem="EaY-Fe-J1c" firstAttribute="top" secondItem="pW4-s4-OpD" secondAttribute="bottom" constant="10" id="t8Q-ha-cYB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="3Q5-BI-oZB" id="WL2-pt-mc6"/>
+                        <outlet property="pwdField" destination="clB-Ku-ASK" id="vQR-OR-fzu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

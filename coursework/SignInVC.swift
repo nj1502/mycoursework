@@ -12,6 +12,12 @@ import FBSDKCoreKit
 import Firebase
 class SignInVC: UIViewController {
 
+    @IBOutlet weak var emailField: FancyField!
+    @IBOutlet weak var pwdField: FancyField!
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -52,7 +58,33 @@ class SignInVC: UIViewController {
                 }
         })
     }
+    
+    
+    //once the sign in button is passed first we must check whether there is actual text with in the field
+    // ERROR HANDLING!!!
+    @IBAction func signInTapped(_ sender: Any) {
+        if let email = emailField.text, let pwd = pwdField.text {
+            FIRAuth.auth()?.signIn(withEmail: email, password: pwd, completion: { (user, error) in
+                if error == nil { //if there is a user check with information stored and firebase and authenticate and then signin
+                    print("JESS: Email user authenticated with Firebase")
+                    }
+                else {
+                    FIRAuth.auth()?.createUser(withEmail: email, password: pwd, completion: { (user, error) in //if there isnt a user check with firebase online create information for user on firebase and then make sure they are authenticated.
+                        if error != nil {
+                            print("JESS: Unable to authenticate with Firebase using email")
+                        } else {
+                            print("JESS: Successfully authenticated with Firebase")
+
+                        }
+                    })
+                }
+            })
+        }
+    }
 }
+
+
+
 
 
 

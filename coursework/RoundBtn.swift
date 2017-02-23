@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//this page add borders and shadowing to the frame of the facebook button, it also make sure the the sides are curved 
 class RoundBtn: UIButton {
 
     override func awakeFromNib() {

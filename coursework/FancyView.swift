@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//This function adds shadowing to the colours on the front page of the UI
 class FancyView: UIView {
 
     override func awakeFromNib() {

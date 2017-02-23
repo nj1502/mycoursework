@@ -37,6 +37,7 @@
 		A0BCF8791E5EA630004D8318 /* RoundBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundBtn.swift; sourceTree = "<group>"; };
 		A0BCF87B1E5EA753004D8318 /* FancyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyField.swift; sourceTree = "<group>"; };
 		A0BCF87D1E5EA828004D8318 /* FancyBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyBtn.swift; sourceTree = "<group>"; };
+		A0BCF87F1E5EB97A004D8318 /* coursework.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = coursework.entitlements; sourceTree = "<group>"; };
 		C95864200C4469210249C7D7 /* Pods-coursework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coursework.release.xcconfig"; path = "Pods/Target Support Files/Pods-coursework/Pods-coursework.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +82,7 @@
 		A0BCF85B1E5E9658004D8318 /* coursework */ = {
 			isa = PBXGroup;
 			children = (
+				A0BCF87F1E5EB97A004D8318 /* coursework.entitlements */,
 				A0BCF8761E5EA4A9004D8318 /* Util */,
 				A0BCF8721E5E99D3004D8318 /* Model */,
 				A0BCF8711E5E99C5004D8318 /* Controller */,
@@ -173,7 +175,13 @@
 				TargetAttributes = {
 					A0BCF8581E5E9657004D8318 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = L4LN279HF8;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -390,6 +398,8 @@
 			baseConfigurationReference = 997F02CA9E7EAD071B09A324 /* Pods-coursework.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = coursework/coursework.entitlements;
+				DEVELOPMENT_TEAM = L4LN279HF8;
 				INFOPLIST_FILE = coursework/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nathan.coursework;
@@ -403,6 +413,8 @@
 			baseConfigurationReference = C95864200C4469210249C7D7 /* Pods-coursework.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = coursework/coursework.entitlements;
+				DEVELOPMENT_TEAM = L4LN279HF8;
 				INFOPLIST_FILE = coursework/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nathan.coursework;

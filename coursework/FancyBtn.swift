@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// this class add shadowing image effect to the sign in button
 class FancyBtn: UIButton {
 
     override func awakeFromNib() {
@@ -16,7 +16,7 @@ class FancyBtn: UIButton {
         layer.shadowOpacity = 0.8
         layer.shadowRadius = 5.0
         layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        layer.cornerRadius = 2.0
+        layer.cornerRadius = 2.0 // this make sure that the edges of the buttons are curved. 
     }
     
 

@@ -10,13 +10,22 @@ import UIKit
 import Firebase //imports firebase
 import SwiftKeychainWrapper //imports the swiftkeycahinwrapper framework.
 //setting up the foundation for the table view
-class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    
+// displays the image picker
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var imageAdd: CircleView!
     
     
        var posts = [Post]() //allows an continous array of posts
+        var imagePicker: UIImagePickerController!
+    
+    
+    
+    
 
     override func viewDidLoad() { //view loading in memory
         super.viewDidLoad()
@@ -24,12 +33,29 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
+        //initializing the imagepicker
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+
+        // imagePicker.allowediting - this allows the user to do basic image editing before they upload.
+        
+        
+        
+        
+        
         // Do any additional setup after loading the view.
         //setting up listener to make sure that what ever changes is tracked (in the firebase atabase)
         // this function will access the posts attribute/object with the singleton. (down)
         // reffering to the posts attribute/child/object
         //.value looks for any value changes, this being whether there is a new child node is added, when a child node is removed, when a child node's location changes, when data changes at a location
         //this prints the snapshot (of the child object/attribute/entities and the value (what is contained in it)
+        
+        
+        
+
+
+        
         
         
         
@@ -104,6 +130,32 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     
+    
+    
+    //this funciton calls the image picker for user to pick image ot upload
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        //get image that user selected (array of information is recieved) - with in this array will be the edited image, checki image is UIimage.
+        
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            imageAdd.image = image //if it is UIimage then set image to the image of the button
+        } else {
+            print("NATHAN: A valid image wasn't selected") //else display error message
+        }
+    imagePicker.dismiss(animated: true, completion: nil) //once user has selected an image get rid of the image picker
+    }
+    
+
+    
+    
+    
+    
+    
+    //when add image button is tapped
+    @IBAction func addImageTapped(_ sender: Any) {
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+
     
 
     

@@ -14,13 +14,22 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
 
-    override func viewDidLoad() {
+    override func viewDidLoad() { //view loading in memory
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
-
+        
         // Do any additional setup after loading the view.
+        //setting up listener to make sure that what ever changes is tracked (in the firebase atabase)
+        // this function will access the posts attribute/object with the singleton. (down)
+        // reffering to the posts attribute/child/object
+        //.value looks for any value changes, this being whether there is a new child node is added, when a child node is removed, when a child node's location changes, when data changes at a location
+        //this prints the snapshot (of the child object/attribute/entities and the value (what is contained in it)
+        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+                print(snapshot.value)
+    
+        })
     }
     
     

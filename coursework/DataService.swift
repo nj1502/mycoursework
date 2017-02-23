@@ -47,8 +47,10 @@ class DataService{ //creating class for communication with firebase database
 // because the data cannot be retireved driectly from firebase database it is retrieved when the authentication process for a user sigin is carried out.  
     //it will take in information for userid (uid) and userData 
     
+    
     func createFirbaseDBUser(uid: String, userData: Dictionary<String, String>) {
         REF_USERS.child(uid).updateChildValues(userData)
+        
         //reference to where the program will write it
         //creating a user on firebase database 
         //update child values - passes user data in

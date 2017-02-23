@@ -1,23 +1,26 @@
 //
-//  FancyView.swift
+//  CircleView.swift
 //  coursework
 //
 //  Created by Nathan Jayawardene on 2/23/17.
 //  Copyright © 2017 Nathan Jayawardene. All rights reserved.
 //
-// this class is involved with providing physical attribute to the display o the UI i.e. SHADOWING CURVIGNG O EDGES CHANGING CHAPES ETC>
-import UIKit
-//This function adds shadowing to the colours on the front page of the UI
-class FancyView: UIView {
 
-    override func awakeFromNib() {
+import UIKit
+
+class CircleView: UIImageView {
+    override func  awakeFromNib() {
         super.awakeFromNib()
         
         layer.shadowColor = UIColor(red: SHADOW_GRAY, green: SHADOW_GRAY, blue: SHADOW_GRAY, alpha: 0.6).cgColor
         layer.shadowOpacity = 0.8
         layer.shadowRadius = 5.0
         layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        layer.cornerRadius = 2.0 //this make the border curved
 
-}
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = self.frame.width / 2
+    }
+
 }

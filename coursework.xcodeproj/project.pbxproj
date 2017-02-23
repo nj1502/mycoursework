@@ -20,6 +20,7 @@
 		A0BCF87E1E5EA828004D8318 /* FancyBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCF87D1E5EA828004D8318 /* FancyBtn.swift */; };
 		A0BCF8811E5ECE92004D8318 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BCF8801E5ECE92004D8318 /* GoogleService-Info.plist */; };
 		A0BCF8831E5EDF9E004D8318 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCF8821E5EDF9E004D8318 /* FeedVC.swift */; };
+		A0BCF8851E5EFF81004D8318 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCF8841E5EFF81004D8318 /* CircleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		A0BCF87F1E5EB97A004D8318 /* coursework.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = coursework.entitlements; sourceTree = "<group>"; };
 		A0BCF8801E5ECE92004D8318 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A0BCF8821E5EDF9E004D8318 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
+		A0BCF8841E5EFF81004D8318 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		C95864200C4469210249C7D7 /* Pods-coursework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coursework.release.xcconfig"; path = "Pods/Target Support Files/Pods-coursework/Pods-coursework.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +108,7 @@
 				A0BCF8791E5EA630004D8318 /* RoundBtn.swift */,
 				A0BCF87B1E5EA753004D8318 /* FancyField.swift */,
 				A0BCF87D1E5EA828004D8318 /* FancyBtn.swift */,
+				A0BCF8841E5EFF81004D8318 /* CircleView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0BCF8851E5EFF81004D8318 /* CircleView.swift in Sources */,
 				A0BCF87C1E5EA753004D8318 /* FancyField.swift in Sources */,
 				A0BCF85F1E5E9658004D8318 /* SignInVC.swift in Sources */,
 				A0BCF87A1E5EA630004D8318 /* RoundBtn.swift in Sources */,

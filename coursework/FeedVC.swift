@@ -18,6 +18,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var imageAdd: CircleView!
+    @IBOutlet weak var captionField: FancyField!
     
     
        var posts = [Post]() //allows an continous array of posts
@@ -27,7 +28,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     //static var imageCache: Cache<NSString, UIImage> = Cache()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     // creating a dictionary for string (url) reference as key and UIimage as data/theobject 
-    
+    var imageSelected = false
     
     
     
@@ -37,7 +38,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         
         tableView.delegate = self
         tableView.dataSource = self
-        
         //initializing the imagepicker
         imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
@@ -57,12 +57,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         //this prints the snapshot (of the child object/attribute/entities and the value (what is contained in it)
         
         
-        
-
-
-        
-        
-        
+    
         
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
             // looking for snapshot form specific children object and then checking whether it is a firebase data snashot FIRDataSnapshot 
@@ -151,6 +146,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             imageAdd.image = image //if it is UIimage then set image to the image of the button
+            imageSelected = true
         } else {
             print("NATHAN: A valid image wasn't selected") //else display error message
         }
@@ -168,8 +164,41 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         present(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func postBtnTapped(_ sender: Any) {
+        //guard creates a constant, and checks whether they post an image and a caption
+        guard let caption = captionField.text, caption != "" else {
+            //if this condition is not true then only if it is NOT true you carryout the code (unlike the if let) so if they dont post a caption
+            print("NATHAN: Caption must be entered")
+            return
+        } //same principle applied as above, if they dont post an image this error message will be displayed
+        guard let img = imageAdd.image, imageSelected == true else {
+            //unless user goes into image picker and select an actual image will the boolean value be set to true
+            print("NATHAN: An image must be selected")
+            return
+        }
+          //this if let will actually upload the image 
+        //img refers to the constant refered above, 0.2, is the compression quality of the image (to keep data usage down and maintain speed)
+        if let imgData = UIImageJPEGRepresentation(img, 0.2){
+            
+            let imgUid = NSUUID().uuidString  //generates an unique ID for the string
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/jpeg" //so that the firebase database know what being passed to it.
+            
+            // sets some meta data for the image
+//accesses the post-pics foler and posts image using an generated ID
+            
+            //using child value and putting data inside.
+            DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
+                if error != nil {
+                    print("JESS: Unable to upload image to Firebasee torage")
+                } else {
+                    print("JESS: Successfully uploaded image to Firebase storage")
+                    let downloadURL = metadata?.downloadURL()?.absoluteString //metedata will get returned from completeion handle and it will contain the download url as an absolute string - (like the raw string so it will be exactly right)
 
-    
+                }
+            }
+        }
+    }
 
     
     @IBAction func signOutTapped(_ sender: Any) { // if signin (actually signout) is tapped this will remove the key stored in key chain and perform a seqgue to the sign in screen
@@ -179,6 +208,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
      //try and catch method to make sure this message is displayed it the above action is not carried out. 
             performSegue(withIdentifier: "goToSignIn", sender: nil)
     }
+    
+    
+    
+    
+    
+    
     
         
     }

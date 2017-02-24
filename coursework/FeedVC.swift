@@ -24,6 +24,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         var imagePicker: UIImagePickerController!
     
     
+    //static var imageCache: Cache<NSString, UIImage> = Cache()
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    // creating a dictionary for string (url) reference as key and UIimage as data/theobject 
+    
+    
     
     
 
@@ -95,9 +100,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        
-        return posts.count //returns integer of posts that are made in the array as the integer for tableView (for how many rows there will be)
+        return posts.count
+        //returns integer of posts that are made in the array as the integer for tableView (for how many rows there will be)
     }
     
     
@@ -111,19 +115,28 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         // get post from post array based on index path and then print captions specifically (ERROR handling to check whether it is working)
         
           let post = posts[indexPath.row]
-        
         //creates a post cell
+        
         // this actually adds the object retreived from post arritbute/Child/object to the visibile UI
         // adds number of likes, caption
-        
-          if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
-            cell.configureCell(post: post)
-            return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
             
-          } else{
-            return PostCell()
+        //configure cell to pass image in if the cache exists
+        // if something is returnedif let img = FeedVC.imageCache.object(forKey: post.imageUrl as NSString) {
+            //checking whether something is the Cache
+            if let img = FeedVC.imageCache.object(forKey: post.imageUrl as NSString) {
+                cell.configureCell(post: post, img: img)
+            } else { // this if let statement will pass the imagine (from a default value set in postcell
+                cell.configureCell(post: post)
             }
+            return cell
+        } else {
+            return PostCell()
+        }
     }
+            
+            
+
 
     //TESTING CARRIED OUT FOR THISS CHECK BOTTOM LEFT SCREEN FOR NATHAN: ... (they will be captions
     

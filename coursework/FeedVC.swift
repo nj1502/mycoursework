@@ -194,11 +194,38 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                 } else {
                     print("JESS: Successfully uploaded image to Firebase storage")
                     let downloadURL = metadata?.downloadURL()?.absoluteString //metedata will get returned from completeion handle and it will contain the download url as an absolute string - (like the raw string so it will be exactly right)
-
+                    if let url = downloadURL {
+                        self.postToFirebase(imgUrl: url)
+                    }
                 }
             }
         }
     }
+//this function will post captions to firebase
+    
+    
+    func postToFirebase(imgUrl: String) {
+        // creates a dictionary to assign values to the keys in the attribute  post , cation ..
+        let post: Dictionary<String, AnyObject> = [
+            "caption": captionField.text! as AnyObject,
+            "imageUrl": imgUrl as AnyObject,
+            "likes": 0 as AnyObject
+        ]
+        // creates a referece to the friebase database as an enpoint, called from the data service class
+        // childbyautoID will generate a new child location and using a unique key, it will then return a firebase reference to it
+        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        firebasePost.setValue(post)
+        //unlike updateChildValues setValue will overwrite (as for the purpose of writing a new post)
+        
+        captionField.text = ""  //setting image feild back to blank
+        imageSelected = false   //setting image status bool back to false, so that user will have to post again/
+        imageAdd.image = UIImage(named: "add-image") // setting the actualy image view to that of the standard image.
+        
+            tableView.reloadData()
+        
+    }
+    
+    
 
     
     @IBAction func signOutTapped(_ sender: Any) { // if signin (actually signout) is tapped this will remove the key stored in key chain and perform a seqgue to the sign in screen
